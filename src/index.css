@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+:root {
+  --color-primary:    #0F172A;
+  --color-secondary:  #1E293B;
+  --color-cta:        #22C55E;
+  --color-background: #020617;
+  --color-text:       #F8FAFC;
+  --color-destructive:#EF4444;
+  --color-warning:    #F59E0B;
+  --color-info:       #3B82F6;
+
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+
+  --nav-height:   64px;
+  --sidebar-width: 240px;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Focus Ring (global) ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-cta);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-primary); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+/* ─── Typography ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 { font-family: 'Fira Code', monospace; }
+
+/* ─── Shimmer Skeleton ───────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary) 25%,
+    rgba(255,255,255,0.04) 50%,
+    var(--color-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ─── Spinner ────────────────────────────────────────────── */
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Pulse Dot ──────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+}
+.pulse-green { animation: pulse-ring 2s ease-out infinite; }
+
+@keyframes pulse-ring-red {
+  0%   { box-shadow: 0 0 0 0   rgba(239,68,68,0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+  100% { box-shadow: 0 0 0 0   rgba(239,68,68,0); }
+}
+.pulse-red { animation: pulse-ring-red 2s ease-out infinite; }
+
+/* ─── Slide Down ─────────────────────────────────────────── */
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down { animation: slide-down 250ms ease forwards; }
+
+/* ─── Fade In ────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 300ms ease forwards; }
+
+/* ─── Progress Bar ───────────────────────────────────────── */
+.progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-primary);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--color-cta);
+  border-radius: 4px;
+  transition: width 300ms ease;
+}
+
+/* ─── Code / Monospace blocks ────────────────────────────── */
+pre, code {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+}
+
+/* ─── Light Mode Overrides ───────────────────────────────── */
+.light {
+  --color-background: #F8FAFC;
+  --color-primary:    #E2E8F0;
+  --color-secondary:  #FFFFFF;
+  --color-text:       #0F172A;
+}
+
+/* ─── Dropdown z-index ───────────────────────────────────── */
+.z-nav     { z-index: 50; }
+.z-sidebar { z-index: 40; }
+.z-modal   { z-index: 100; }
+.z-toast   { z-index: 9999; }

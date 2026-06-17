@@ -1,0 +1,10 @@
+
+> notetaker-platform@1.0.0 dev
+> vite --port=5174 --host=0.0.0.0 --no-open --base=/preview/frontend/
+
+Port 5174 is in use, trying another one...
+
+  VITE v5.4.21  ready in 159 ms
+
+  ➜  Local:   http://localhost:5175/preview/frontend/
+  ➜  Network: http://10.42.1.75:5175/preview/frontend/
